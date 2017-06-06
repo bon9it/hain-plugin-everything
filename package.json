@@ -1,6 +1,6 @@
 {
   "name": "hain-plugin-everything",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Hain plugin to integrate with Everything",
   "author": "trant <bon9it@gmail.com>",
   "scripts": {

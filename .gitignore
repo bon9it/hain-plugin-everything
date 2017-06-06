@@ -1,0 +1,57 @@
+# Java
+.classpath
+.project
+.settings/
+.clover/
+.idea/
+target/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+
+# .NET
+Thumbs.db
+*.obj
+*.exe
+*.pdb
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.sln.docstates
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+*.vssscc
+$tf*/
+[Pp]ackages
+
+# Bower
+bower_components
+
+# Dependency directory
+# Commenting this out is preferred by some people, see
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
+node_modules
+
+# Gradle
+gradle*/
+.gradle*/
+[Bb]uild*/
+*.lock
+*.bin

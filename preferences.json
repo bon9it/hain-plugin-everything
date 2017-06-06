@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "everythingInstallation": {
+            "type": "string",
+            "title": "Everything installation (i.e. es.exe)"
+        }
+    }
+}

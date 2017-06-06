@@ -1,0 +1,31 @@
+{
+  "name": "hain-plugin-everything",
+  "version": "0.0.1",
+  "description": "A Hain plugin to integrate with Everything",
+  "author": "trant <bon9it@gmail.com>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bon9it/hain-plugin-everything"
+  },
+  "bugs": {
+    "url": "https://github.com/bon9it/hain-plugin-everything/issues"
+  },
+  "keywords": [
+    "hain",
+    "hain-0.3.0",
+    "hain-plugin",
+    "plugin",
+    "everything"
+  ],
+  "license": "MIT",
+  "hain": {
+    "prefix": "/e ",
+    "usage": "Type /e and then a query to see the search results",
+    "icon": "#fa fa-search",
+    "redirect": "/e "
+  }
+}

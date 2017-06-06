@@ -85,7 +85,9 @@ module.exports = (pluginContext) => {
                 var fdesc = filename;
                 var ficon = `#fa fa-${resolveExtIcon(fext)}-o`;
                 var fname = filename.substr(filename.lastIndexOf("\\") + 1);
-                fname = fname.substring(0, fname.length - fext.length - 1);
+				if (fext) {
+					fname = fname.substring(0, fname.length - fext.length - 1);
+				}
 
                 res.add({
                     id: filename,

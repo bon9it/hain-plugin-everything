@@ -12,13 +12,18 @@ module.exports = (pluginContext) => {
     const preferences = pluginContext.preferences;
 
     /* Members */
-    var extIcons = {
+    const extIcons = {
         'rar': 'file-archive',
         'zip': 'file-archive',
+        '7z': 'file-archive',
+        'tar': 'file-archive',
 
         'doc': 'file-word',
+        'docx': 'file-word',
         'xls': 'file-excel',
+        'xlsx': 'file-excel',
         'ppt': 'file-powerpoint',
+        'pptx': 'file-powerpoint',
         'pdf': 'file-pdf',
         
         'img': 'file-image',
@@ -31,6 +36,7 @@ module.exports = (pluginContext) => {
         'mp3': 'file-audio',
         'wav': 'file-sound',
 
+        'mp4': 'file-video',
         'mov': 'file-video',
         'flv': 'file-video',
 
@@ -48,32 +54,31 @@ module.exports = (pluginContext) => {
         'jsx': 'file-code'
     };
 
-    /* Helpers */
-    function resolveExtIcon(ext) {
+    const resolveExtIcon = (ext) => {
         if (ext && extIcons[ext.toLowerCase()]) {
             return extIcons[ext.toLowerCase()];
         }
         return 'file';
     };
 
-    /* Hooks */
+    /* Prefereneces */
+    var everythingCli;
+    const initialize = (p) => {
+        everythingCli = (p.everythingCli ? p.everythingCli : 'es');
+    };
+
+    /* Extensions */
     function startup() {
         initialize(preferences.get());
         preferences.on('update', initialize);
     }
 
     function search(q, res) {
-        // Ger preferences
-        var everythingExe = preferences.get().everythingInstallation;
-        if (!everythingExe) {/e /
-            everythingExe = "es";
-        }
-
         // Pre-process `query`
         q = q.trim();
 
         //'-name', '-path-column', '-full-path-and-name', '-filename-column', '-extension', '-ext', '-size', '-date-created', '-date-modified', '-date-accessed', '-attributes'
-        const child = execFile(everythingExe, ['-n', '10', '-s', q], function(error, stdout, stderr) {
+        const child = execFile(everythingCli, ['-n', '10', '-s', q], function(error, stdout, stderr) {
             stdout.split('\n').forEach(function(filename) {
                 filename = filename.trim();
                 // Skip empty result
@@ -85,13 +90,10 @@ module.exports = (pluginContext) => {
                 var fdesc = filename;
                 var ficon = `#fa fa-${resolveExtIcon(fext)}-o`;
                 var fname = filename.substr(filename.lastIndexOf("\\") + 1);
-				if (fext) {
-					fname = fname.substring(0, fname.length - fext.length - 1);
-				}
 
                 res.add({
                     id: filename,
-                    title: `${fname}${fext ? ' (' + fext + ')' : ''}`,
+                    title: fname,
                     desc: fdesc,
                     payload: filename,
                     icon: ficon
@@ -104,5 +106,6 @@ module.exports = (pluginContext) => {
         shell.openExternal(payload);
         app.close();
     }
-    return { search, execute };
+
+    return { startup, search, execute };
 };
